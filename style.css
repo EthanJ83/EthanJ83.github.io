@@ -1,0 +1,56 @@
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+#start-screen {
+  padding: 100px 20px;
+  background-color: #111;
+}
+#start-btn {
+  font-size: 20px;
+  padding: 15px 30px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#game screen {
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding-top: 30px;
+}
+#battle-area {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+#actions {
+  margin: 20px 0;
+}
+#actions button {
+  background: none;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+}
+#actions img {
+  width: 100px;
+  height: 100px;
+}
+#log {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: rgba(0,0,0,0.6);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: left;
+}
