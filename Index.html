@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RPG Battle Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Start Screen -->
+  <div id="start-screen">
+    <h1>Welcome to RPG Battle!</h1>
+    <button id="start-btn">Start Game</button>
+  </div>
+  <!-- Game Screen -->
+  <div id="game-screen" style="display:none;">
+    <div id="battle-area">
+      <div id="player-stats">
+        <h2>Player</h2>
+        <p id="player-hp">HP: 100</p>
+      </div>
+      <div id="monster-stats">
+        <h2>Monster</h2>
+        <p id="monster-hp">HP: 100</p>
+      </div>
+    </div>
+    <!-- Image Buttons -->
+    <div id="actions">
+      <button id="attack-btn"><img src="attack-btn.png" alt="Attack"></button>
+      <button id="block-btn"><img src="block-btn.png" alt="Block"></button>
+    </div>
+    <div id="log"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
