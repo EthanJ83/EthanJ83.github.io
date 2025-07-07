@@ -19,7 +19,7 @@ body {
   cursor: pointer;
 }
 #game screen {
-  background-image: url("background.jpg");
+  background-image: url("costume1 (1).svg");
   background-size: cover;
   background-position: center;
   min-height: 100vh;
