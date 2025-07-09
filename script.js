@@ -10,17 +10,14 @@ let player = {
   baseAttack: 15,
   isBlocking: false
 };
-// Start the game
 document.getElementById("start-btn").addEventListener("click", function() {
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("game-screen").style.display = "block";
   logMessage("The battle begins!");
   updateUI();
 });
-// Attack action
 document.getElementById("attack-btn").addEventListener("click", attack);
 document.getElementById("block-btn").addEventListener("click", block);
-// Game functions
 function attack() {
   let damage = player.baseAttack;
   monster.hp -= damage;
