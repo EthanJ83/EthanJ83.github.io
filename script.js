@@ -1,8 +1,8 @@
 let currentLevel = 0;
 const monsters = [
   { name: "Goblin", hp: 100, attack: 10 },
-  { name: "Ogre", hp: 140, attack: 14 },
-  { name: "Dark Lord", hp: 180, attack: 18 }
+  { name: "Ogre", hp: 110, attack: 12 },
+  { name: "Dark Lord", hp: 200, attack: 5 }
 ];
 let monster = { ...monsters[currentLevel] };
 let player = {
