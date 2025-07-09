@@ -1,10 +1,11 @@
+HTML 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RPG Battle Game</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Start Screen -->
@@ -20,17 +21,28 @@
         <p id="player-hp">HP: 100</p>
       </div>
       <div id="monster-stats">
-        <h2>Monster</h2>
+        <h2 id="monster-name">Monster</h2>
         <p id="monster-hp">HP: 100</p>
       </div>
     </div>
-    <!-- Image Buttons -->
+    <!-- Action Buttons -->
     <div id="actions">
-      <button id="attack-btn"><img src="costume3 (1).svg" alt="Attack"></button>
-      <button id="block-btn"><img src="costume4 (1).svg" alt="Block"></button>
+      <button id="attack-btn"><img src="attack-btn.png" alt="Attack" /></button>
+      <button id="block-btn"><img src="block-btn.png" alt="Block" /></button>
     </div>
+    <!-- Battle Log -->
     <div id="log"></div>
   </div>
-  <script src="RPG.js"></script>
+  <!-- Win Screen -->
+  <div id="win-screen" style="display:none;">
+    <h1>You Win!</h1>
+    <p>You defeated all the monsters!</p>
+  </div>
+  <!-- Lose Screen -->
+  <div id="lose-screen" style="display:none;">
+    <h1>Game Over</h1>
+    <p>You were defeated in battle.</p>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
