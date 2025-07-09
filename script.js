@@ -1,58 +1,41 @@
-let currentLevel = 0; 
-
+let currentLevel = 0;
 const monsters = [
   { name: "Goblin", hp: 100, attack: 10 },
   { name: "Ogre", hp: 140, attack: 14 },
   { name: "Dark Lord", hp: 180, attack: 18 }
 ];
-
+let monster = { ...monsters[currentLevel] };
 let player = {
   hp: 100,
   baseAttack: 15,
   isBlocking: false
 };
-
-function enemyTurn() {
-  if (monster.hp <= 0) return;
-  
-let monster = { ...monsters[currentLevel] };
-let currentLevel = 0; 
-
-function updateUI() {
-  document.getElementById("player-hp").textContent = `HP: ${Math.max(player.hp, 0)}`;
-  document.getElementById("monster-hp").textContent = `HP: ${Math.max(monster.hp, 0)}`;
-}
-function logMessage(message) {
-  const logDiv = document.getElementById("log");
-  logDiv.innerHTML = `<p>${message}</p>` + logDiv.innerHTML;
-}
-function disableActions() {
-  document.getElementById("attack-btn").disabled = true;
-  document.getElementById("block-btn").disabled = true;
-}
-function enemyTurn() {
-  if (monster.hp <= 0) return;
-  let damage = monster.attack;
-  if (player.isBlocking) {
-    damage = Math.floor(damage / 2);
-    logMessage("You blocked some of the damage!");
-  }
-  player.hp -= damage;
-  player.isBlocking = false;
-  logMessage(`The monster hits you for ${damage} damage.`);
-  if (player.hp <= 0) {
-    logMessage("💀 You were defeated by the monster.");
-    disableActions();
-  }
-}
+// Start the game
+document.getElementById("start-btn").addEventListener("click", function() {
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("game-screen").style.display = "block";
+  logMessage("The battle begins!");
+  updateUI();
+});
+// Attack action
+document.getElementById("attack-btn").addEventListener("click", attack);
+document.getElementById("block-btn").addEventListener("click", block);
+// Game functions
 function attack() {
   let damage = player.baseAttack;
   monster.hp -= damage;
-  logMessage(`You attack the monster for ${damage} damage!`);
+  logMessage(`You attack ${monster.name} for ${damage} damage!`);
   if (monster.hp <= 0) {
-    logMessage("🎉 You defeated the monster!");
+    logMessage(`🎉 You defeated ${monster.name}!`);
+    currentLevel++;
+    if (currentLevel >= monsters.length) {
+      showWinScreen();
+      disableActions();
+      return;
+    }
+    logMessage("Healing... and preparing next battle.");
     disableActions();
-    updateUI();
+    setTimeout(nextLevel, 2000);
     return;
   }
   enemyTurn();
@@ -64,11 +47,53 @@ function block() {
   enemyTurn();
   updateUI();
 }
-document.getElementById("start-btn").addEventListener("click", function() {
-  document.getElementById("start-screen").style.display = "none";
-  document.getElementById("game-screen").style.display = "block";
-  logMessage("The battle begins!");
+function enemyTurn() {
+  if (monster.hp <= 0) return;
+  let damage = monster.attack;
+  if (player.isBlocking) {
+    damage = Math.floor(damage / 2);
+    logMessage("You blocked some of the damage!");
+  }
+  player.hp -= damage;
+  player.isBlocking = false;
+  logMessage(`${monster.name} hits you for ${damage} damage.`);
+  if (player.hp <= 0) {
+    logMessage("💀 You were defeated.");
+    showLoseScreen();
+    disableActions();
+  }
   updateUI();
-});
-document.getElementById("attack-btn").addEventListener("click", attack);
-document.getElementById("block-btn").addEventListener("click", block);
+}
+function nextLevel() {
+  monster = { ...monsters[currentLevel] };
+  player.hp = 100;
+  player.isBlocking = false;
+  logMessage(`🔥 New Boss: ${monster.name} appears!`);
+  updateUI();
+  enableActions();
+}
+function updateUI() {
+  document.getElementById("player-hp").textContent = `HP: ${Math.max(player.hp, 0)}`;
+  document.getElementById("monster-hp").textContent = `HP: ${Math.max(monster.hp, 0)}`;
+  document.getElementById("monster-name").textContent = monster.name;
+}
+function logMessage(message) {
+  const logDiv = document.getElementById("log");
+  logDiv.innerHTML = `<p>${message}</p>` + logDiv.innerHTML;
+}
+function disableActions() {
+  document.getElementById("attack-btn").disabled = true;
+  document.getElementById("block-btn").disabled = true;
+}
+function enableActions() {
+  document.getElementById("attack-btn").disabled = false;
+  document.getElementById("block-btn").disabled = false;
+}
+function showWinScreen() {
+  document.getElementById("game-screen").style.display = "none";
+  document.getElementById("win-screen").style.display = "block";
+}
+function showLoseScreen() {
+  document.getElementById("game-screen").style.display = "none";
+  document.getElementById("lose-screen").style.display = "block";
+}
