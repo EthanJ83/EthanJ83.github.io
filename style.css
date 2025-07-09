@@ -18,7 +18,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
 }
-#game screen {
+#game-screen {
   background-image: url("https://drive.google.com/drive/folders/1AHiVWTEEYwsyF8YOjg8Qb8fIUneFlYLH");
   background-size: cover;
   background-position: center;
