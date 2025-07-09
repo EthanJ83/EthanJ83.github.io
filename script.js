@@ -1,12 +1,23 @@
+let currentLevel = 0; 
+
+const monsters = [
+  { name: "Goblin", hp: 100, attack: 10 },
+  { name: "Ogre", hp: 140, attack: 14 },
+  { name: "Dark Lord", hp: 180, attack: 18 }
+];
+
 let player = {
   hp: 100,
   baseAttack: 15,
   isBlocking: false
 };
-let monster = {
-  hp: 100,
-  attack: 10
-};
+
+function enemyTurn() {
+  if (monster.hp <= 0) return;
+  
+let monster = { ...monsters[currentLevel] };
+let currentLevel = 0; 
+
 function updateUI() {
   document.getElementById("player-hp").textContent = `HP: ${Math.max(player.hp, 0)}`;
   document.getElementById("monster-hp").textContent = `HP: ${Math.max(monster.hp, 0)}`;
